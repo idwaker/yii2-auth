@@ -10,6 +10,11 @@
 			"email": "idwaker@gmail.com"
 		}
 	],
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-composer": "dev-master"
+    },
 	"autoload": {
 		"psr-4": {
 			"idwaker\\auth\\": ""
