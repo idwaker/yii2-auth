@@ -4,6 +4,7 @@ namespace idwaker\auth\models;
 
 use Yii;
 use yii\db\Expression;
+use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 
 
