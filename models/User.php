@@ -39,4 +39,44 @@ class User extends AuthUser implements IdentityInterface
             'updated_on' => Yii::t('auth', 'Updated On'),
         ];
     }
+    
+    /**
+     * @inheritdoc
+     */
+    public static function findIndentity($id)
+    {
+        // implement
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentityByAccessToken($token, $type=null)
+    {
+        // implement
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function getId()
+    {
+        // implement
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function getAuthKey()
+    {
+        // implement
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function validateAuthkey($authKey)
+    {
+        // implement
+    }
 }
