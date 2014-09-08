@@ -3,6 +3,9 @@
 namespace idwaker\auth\models;
 
 use Yii;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
+
 
 /**
  * This is the model class for table "auth_rule".
@@ -23,6 +26,23 @@ class AuthRule extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'auth_rule';
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'created_on',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_on',
+                ],
+                'value' => new Expression('NOW()'),
+            ],
+        ];
     }
 
     /**
