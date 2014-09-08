@@ -13,7 +13,7 @@ class Permission extends AuthPermission
     public function rules()
     {
         return [
-            [['name', 'description', 'created_on', 'updated_on'], 'required'],
+            [['name', 'description'], 'required'],
             [['description'], 'string'],
             [['parent', 'rule_id'], 'integer'],
             [['created_on', 'updated_on'], 'safe'],

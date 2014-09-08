@@ -13,7 +13,7 @@ class Role extends AuthRole
     public function rules()
     {
         return [
-            [['name', 'created_on', 'updated_on'], 'required'],
+            [['name'], 'required'],
             [['description'], 'string'],
             [['parent'], 'integer'],
             [['created_on', 'updated_on'], 'safe'],

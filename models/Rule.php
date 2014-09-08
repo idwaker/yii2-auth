@@ -13,7 +13,7 @@ class Rule extends AuthRule
     public function rules()
     {
         return [
-            [['name', 'created_on', 'updated_on'], 'required'],
+            [['name'], 'required'],
             [['data'], 'string'],
             [['created_on', 'updated_on'], 'safe'],
             [['name'], 'string', 'max' => 64],

@@ -14,7 +14,7 @@ class User extends AuthUser implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password', 'last_loggedin', 'created_on', 'updated_on'], 'required'],
+            [['username', 'password'], 'required'],
             [['status', 'is_loggedin'], 'integer'],
             [['last_loggedin', 'created_on', 'updated_on'], 'safe'],
             [['username', 'password'], 'string', 'max' => 64],
