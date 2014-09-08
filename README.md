@@ -25,7 +25,37 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-Once the extension is installed, simply use it in your code by  :
 
-```php
-<?= \idwaker\auth\AutoloadExample::widget(); ?>```
+Structure
+---------
+
+Module.php
+README.md
+components/
+    AuthManager.php
+models/
+    User.php
+    Role.php
+    Permission.php
+    Rule.php
+    RolePermission.php
+    UserRole.php
+    UserIdentity.php
+controllers/
+    UserController.php
+    RoleControler.php
+    PermissionController.php
+    RuleController.php
+commands/
+    AuthController.php
+migrations/
+    ...
+views/
+    user/
+        ...
+    role/
+        ...
+    permission/
+        ...
+    rule/
+        ...
