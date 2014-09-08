@@ -29,33 +29,33 @@ Usage
 Structure
 ---------
 
-Module.php
-README.md
-components/
-    AuthManager.php
-models/
-    User.php
-    Role.php
-    Permission.php
-    Rule.php
-    RolePermission.php
-    UserRole.php
-    UserIdentity.php
-controllers/
-    UserController.php
-    RoleControler.php
-    PermissionController.php
-    RuleController.php
-commands/
-    AuthController.php
-migrations/
-    ...
-views/
-    user/
+    Module.php
+    README.md
+    components/
+        AuthManager.php
+    models/
+        User.php
+        Role.php
+        Permission.php
+        Rule.php
+        RolePermission.php
+        UserRole.php
+        UserIdentity.php
+    controllers/
+        UserController.php
+        RoleControler.php
+        PermissionController.php
+        RuleController.php
+    commands/
+        AuthController.php
+    migrations/
         ...
-    role/
-        ...
-    permission/
-        ...
-    rule/
-        ...
+    views/
+        user/
+            ...
+        role/
+            ...
+        permission/
+            ...
+        rule/
+            ...
