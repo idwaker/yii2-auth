@@ -43,7 +43,7 @@ class User extends AuthUser implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public static function findIndentity($id)
+    public static function findIdentity($id)
     {
         // implement
     }
