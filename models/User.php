@@ -2,6 +2,7 @@
 
 namespace idwaker\auth\models;
 
+use Yii;
 use yii\web\IdentityInterface;
 use idwaker\auth\models\AuthUser;
 

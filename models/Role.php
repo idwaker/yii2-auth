@@ -2,6 +2,7 @@
 
 namespace idwaker\auth\models;
 
+use Yii;
 use idwaker\auth\models\AuthRole;
 
 
