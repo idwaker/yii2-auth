@@ -27,7 +27,7 @@ class Module extends \yii\base\Module
         if (empty(Yii::$app->i18n->translations['auth'])) {
             Yii::$app->i18n->translations['auth'] = [
                'class' => 'yii\i18n\PhpMessageSource',
-               // 'sourceLanguage' => '',
+               'sourceLanguage' => 'en',
                'basePath' => __DIR__ . '/messages',
             ];
         }
