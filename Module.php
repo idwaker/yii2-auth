@@ -8,6 +8,7 @@ use Yii;
 class Module extends \yii\base\Module
 {
     public $controllerNamespace = 'idwaker\auth\controllers';
+    public $alias = "@auth";
 
     public function init()
     {
