@@ -1,7 +1,0 @@
-<?php
-
-/**
- * Message Translations
- *
- */
-return [];
