@@ -24,9 +24,9 @@ class Module extends \yii\base\Module
            'sourceLanguage' => '',
            'basePath' => '@idwaker/auth/messages',
            
-           // 'fileMap' => [
-//                'auth' => 'auth.php'
-//            ] 
+           'fileMap' => [
+               'auth' => 'auth.php'
+           ] 
         ];
     }
 }
