@@ -46,7 +46,7 @@ class User extends AuthUser implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        // implement
+        return $this->findOne($id);
     }
     
     /**
@@ -70,7 +70,7 @@ class User extends AuthUser implements IdentityInterface
      */
     public function getAuthKey()
     {
-        // implement
+        return $this->auth_key;
     }
     
     /**
@@ -78,6 +78,6 @@ class User extends AuthUser implements IdentityInterface
      */
     public function validateAuthkey($authKey)
     {
-        // implement
+        return $authKey === $this->auth_key;
     }
 }
