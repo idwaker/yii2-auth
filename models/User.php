@@ -46,7 +46,7 @@ class User extends AuthUser implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return $this->findOne($id);
+        return User::findOne($id);
     }
     
     /**
