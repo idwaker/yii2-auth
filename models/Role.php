@@ -41,6 +41,6 @@ class Role extends AuthRole
     
     public function getRoleList()
     {
-        return ArrayHelper::map(Role::find()->asArray()->all(), 'id', 'name')
+        return ArrayHelper::map(Role::find()->asArray()->all(), 'id', 'name');
     }
 }

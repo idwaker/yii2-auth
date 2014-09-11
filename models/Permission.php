@@ -43,11 +43,11 @@ class Permission extends AuthPermission
     
     public function getPermissionList()
     {
-        return ArrayHelper::map(Permission::find()->asArray()->all(), 'id', 'name')
+        return ArrayHelper::map(Permission::find()->asArray()->all(), 'id', 'name');
     }
     
     public function getRuleList()
     {
-        return ArrayHelper::map(Rule::find()->asArray()->all(), 'id', 'name')
+        return ArrayHelper::map(Rule::find()->asArray()->all(), 'id', 'name');
     }
 }
