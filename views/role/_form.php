@@ -15,13 +15,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'name')->textInput(['maxlength' => 64]) ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-
-    <div class="form-group">
-        <label>Child Of</label>
-        <?= Html::activeDropDownList($model, 'parent', 
-                                     $model->getRoleList(),
-                                     ['class' => 'form-control']) ?>
-    </div>
+    
+    <?= $form->field($model, 'parent')->dropDownList($model->getRoleList()) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('auth', 'Create') : Yii::t('auth', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

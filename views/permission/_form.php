@@ -16,13 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <div class="form-group">
-        <label>Child Of</label>
-        <?= Html::activeDropDownList($model, 'parent', 
-                                     $model->getPermissionList(),
-                                     ['class' => 'form-control']) ?>
-    </div>
-
+    <?= $form->field($model, 'parent')->dropDownList($model->getPermissionList()) ?>
+    
     <div class="form-group">
         <label>Rule</label>
         <?= Html::activeDropDownList($model, 'rule_id', 
