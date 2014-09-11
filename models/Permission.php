@@ -4,6 +4,8 @@ namespace idwaker\auth\models;
 
 use Yii;
 use idwaker\auth\models\AuthPermission;
+use idwaker\auth\models\Rule;
+use yii\helpers\ArrayHelper;
 
 
 class Permission extends AuthPermission
@@ -37,5 +39,15 @@ class Permission extends AuthPermission
             'created_on' => Yii::t('auth', 'Created On'),
             'updated_on' => Yii::t('auth', 'Updated On'),
         ];
+    }
+    
+    public function getPermissionList()
+    {
+        return ArrayHelper::map(Permission::find()->asArray()->all(), 'id', 'name')
+    }
+    
+    public function getRuleList()
+    {
+        return ArrayHelper::map(Rule::find()->asArray()->all(), 'id', 'name')
     }
 }

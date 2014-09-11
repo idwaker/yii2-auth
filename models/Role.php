@@ -4,6 +4,7 @@ namespace idwaker\auth\models;
 
 use Yii;
 use idwaker\auth\models\AuthRole;
+use yii\helpers\ArrayHelper;
 
 
 class Role extends AuthRole
@@ -36,5 +37,10 @@ class Role extends AuthRole
             'created_on' => Yii::t('auth', 'Created On'),
             'updated_on' => Yii::t('auth', 'Updated On'),
         ];
+    }
+    
+    public function getRoleList()
+    {
+        return ArrayHelper::map(Role::find()->asArray()->all(), 'id', 'name')
     }
 }

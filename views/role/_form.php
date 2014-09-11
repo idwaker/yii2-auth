@@ -16,11 +16,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'parent')->textInput() ?>
-
-    <?= $form->field($model, 'created_on')->textInput() ?>
-
-    <?= $form->field($model, 'updated_on')->textInput() ?>
+    <div class="form-group">
+        <label>Child Of</label>
+        <?= Html::activeDropDownList($model, 'parent', 
+                                     $model->getRoleList(),
+                                     ['class' => 'form-control']) ?>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('auth', 'Create') : Yii::t('auth', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
