@@ -132,6 +132,11 @@ class User extends AuthUser implements IdentityInterface
                 $this->generateAuthKey();
                 $this->setPassword();
             }
+            else {
+                if ($this->password !== "") {
+                    $this->setPassword();
+                }
+            }
             return true;
         }
         else {
