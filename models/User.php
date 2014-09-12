@@ -109,6 +109,11 @@ class User extends AuthUser implements IdentityInterface
         $this->auth_key = Yii::$app->getSecurity()->generateRandomString();
     }
     
+    public function setPassword()
+    {
+        $this->password= Yii::$app->getSecurity()->generatePasswordHash($this->password);
+    }
+    
     /**
      * Validates password
      *
@@ -124,8 +129,8 @@ class User extends AuthUser implements IdentityInterface
     {
         if (parent::beforeSave($insert)) {
             if ($insert) {
-                var_dump(Yii::$app->getSecurity()->generatePasswordHash($this->password));
-                $this->password= Yii::$app->getSecurity()->generatePasswordHash($this->password);
+                $this->generateAuthKey();
+                $this->setPassword();
             }
             return true;
         }
