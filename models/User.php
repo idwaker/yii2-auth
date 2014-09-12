@@ -9,6 +9,8 @@ use idwaker\auth\models\AuthUser;
 
 class User extends AuthUser implements IdentityInterface
 {
+    const STATUS_ACTIVE = 1;
+    
     /**
      * @inheritdoc
      */
@@ -46,7 +48,7 @@ class User extends AuthUser implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return User::findOne($id);
+        return User::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
     
     /**
@@ -54,7 +56,18 @@ class User extends AuthUser implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type=null)
     {
-        // implement
+        $data = Yii::$app->getSecurity()->validateData($token, $this->auth_key);
+        if ($data !== false) {
+            $userData = json_decode(base64_decode($data));
+            return User::findIdentity($userData['id']);
+        }
+        return false;
+    }
+    
+    public function getAccessToken()
+    {
+        $data = base64encode(json_encode(["id" => $this->id]));
+        return Yii::$app->getSecurity()->hashData($data, $this->auth_key);
     }
     
     /**
@@ -62,7 +75,7 @@ class User extends AuthUser implements IdentityInterface
      */
     public function getId()
     {
-        // implement
+        return $this->getPrimaryKey();
     }
     
     /**
