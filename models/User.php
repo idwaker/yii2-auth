@@ -65,6 +65,11 @@ class User extends AuthUser implements IdentityInterface
         return false;
     }
     
+    public static function findByUsername($username)
+    {
+        return User::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+    }
+    
     public function getAccessToken()
     {
         $data = base64encode(json_encode(["id" => $this->id]));
