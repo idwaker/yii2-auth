@@ -3,7 +3,6 @@
 namespace idwaker\auth\models;
 
 use Yii;
-use yii\base\Security;
 use yii\web\IdentityInterface;
 use idwaker\auth\models\AuthUser;
 
@@ -59,7 +58,7 @@ class User extends AuthUser implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type=null)
     {
-        $data = Security::validateData($token, $this->secret_key);
+        $data = Yii::$app->getSecurity()->validateData($token, $this->secret_key);
         if ($data !== false) {
             $userData = json_decode(base64_decode($data));
             return User::findIdentity($userData['id']);
@@ -75,7 +74,7 @@ class User extends AuthUser implements IdentityInterface
     public function getAccessToken()
     {
         $data = base64encode(json_encode(["id" => $this->id]));
-        return Security::hashData($data, $this->secret_key);
+        return Yii::$app->getSecurity()->hashData($data, $this->secret_key);
     }
     
     /**
@@ -107,7 +106,7 @@ class User extends AuthUser implements IdentityInterface
      */
     public function generateAuthKey()
     {
-        $this->auth_key = Security::generateRandomString();
+        $this->auth_key = Yii::$app->getSecurity()->generateRandomString();
     }
     
     /**
@@ -118,15 +117,15 @@ class User extends AuthUser implements IdentityInterface
      */
     public function validatePassword($password)
     {
-        return Security::validatePassword($password, $this->password);
+        return Yii::$app->getSecurity()->validatePassword($password, $this->password);
     }
 
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
             if ($insert) {
-                var_dump(Security::generatePasswordHash($this->password));
-                $this->password= Security::generatePasswordHash($this->password);
+                var_dump(Yii::$app->getSecurity()->generatePasswordHash($this->password));
+                $this->password= Yii::$app->getSecurity()->generatePasswordHash($this->password);
             }
             return true;
         }
