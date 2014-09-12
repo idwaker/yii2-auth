@@ -4,6 +4,7 @@ namespace idwaker\auth\models;
 
 use Yii;
 use yii\web\IdentityInterface;
+use yii\helpers\Security;
 use idwaker\auth\models\AuthUser;
 
 
@@ -18,6 +19,7 @@ class User extends AuthUser implements IdentityInterface
     {
         return [
             [['username', 'password'], 'required'],
+            [['username'], 'unique'],
             [['status', 'is_loggedin'], 'integer'],
             [['last_loggedin', 'created_on', 'updated_on'], 'safe'],
             [['username', 'password'], 'string', 'max' => 64],
@@ -57,7 +59,7 @@ class User extends AuthUser implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type=null)
     {
-        $data = Yii::$app->getSecurity()->validateData($token, $this->secret_key);
+        $data = Security::validateData($token, $this->secret_key);
         if ($data !== false) {
             $userData = json_decode(base64_decode($data));
             return User::findIdentity($userData['id']);
@@ -73,7 +75,7 @@ class User extends AuthUser implements IdentityInterface
     public function getAccessToken()
     {
         $data = base64encode(json_encode(["id" => $this->id]));
-        return Yii::$app->getSecurity()->hashData($data, $this->secret_key);
+        return Security::hashData($data, $this->secret_key);
     }
     
     /**
@@ -105,7 +107,7 @@ class User extends AuthUser implements IdentityInterface
      */
     public function generateAuthKey()
     {
-        $this->auth_key = Yii::$app->security->generateRandomString();
+        $this->auth_key = Security::generateRandomString();
     }
     
     /**
@@ -116,16 +118,20 @@ class User extends AuthUser implements IdentityInterface
      */
     public function validatePassword($password)
     {
-        return Yii::$app->security->validatePassword($password, $this->password);
+        return Security::validatePassword($password, $this->password);
     }
 
-    /**
-     * Generates password hash from password and sets it to the model
-     *
-     * @param string $password
-     */
-    public function setPassword($password)
+    public function beforeSave($insert)
     {
-        $this->password = Yii::$app->security->generatePasswordHash($password);
+        if (parent::beforeSafe($insert)) {
+            if ($insert) {
+                var_dump(Security::generatePasswordHash($this->password))
+                $this->password= Security::generatePasswordHash($this->password);
+            }
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

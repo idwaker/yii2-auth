@@ -16,6 +16,8 @@ class m010101_020202_update_usertable extends Migration
                          Schema::TYPE_TEXT . ' NOT NULL');
         $this->alterColumn('auth_user', 'auth_key',
                            Schema::TYPE_TEXT . ' NOT NULL');
+        $this->createIndex('username_unique', 'auth_user', ['username'],
+                            true);
     }
 
     public function safeDown()
@@ -23,5 +25,6 @@ class m010101_020202_update_usertable extends Migration
         $this->dropColumn('auth_user', 'secret_key');
         $this->alterColumn('auth_user', 'auth_key',
                            Schema::TYPE_STRING . '(32) NOT NULL');
+        $this->dropIndex('username_unique');
     }
 }
