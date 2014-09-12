@@ -3,8 +3,8 @@
 namespace idwaker\auth\models;
 
 use Yii;
+use yii\base\Security;
 use yii\web\IdentityInterface;
-use yii\helpers\Security;
 use idwaker\auth\models\AuthUser;
 
 
