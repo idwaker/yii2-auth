@@ -125,7 +125,7 @@ class User extends AuthUser implements IdentityInterface
     {
         if (parent::beforeSafe($insert)) {
             if ($insert) {
-                var_dump(Security::generatePasswordHash($this->password))
+                var_dump(Security::generatePasswordHash($this->password));
                 $this->password= Security::generatePasswordHash($this->password);
             }
             return true;
