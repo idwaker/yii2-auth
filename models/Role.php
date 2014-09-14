@@ -50,4 +50,10 @@ class Role extends AuthRole
     {
         return ArrayHelper::map(Permission::find()->asArray()->all(), 'id', 'name');
     }
+    
+    public function afterSave($insert)
+    {
+        var_dump($this->permissions);
+        die;
+    }
 }
