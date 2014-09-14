@@ -51,9 +51,10 @@ class Role extends AuthRole
         return ArrayHelper::map(Permission::find()->asArray()->all(), 'id', 'name');
     }
     
-    public function afterSave($insert)
+    public function afterSave($insert, $changedAttributes)
     {
         var_dump($this->permissions);
+        parent::afterSave($insert, $changedAttributes);
         die;
     }
 }
