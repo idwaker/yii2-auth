@@ -10,6 +10,8 @@ use idwaker\auth\models\Permission;
 
 class Role extends AuthRole
 {
+    public $permissions = [];
+    
     /**
      * @inheritdoc
      */
@@ -56,5 +58,40 @@ class Role extends AuthRole
         var_dump($this->permissions);
         parent::afterSave($insert, $changedAttributes);
         die;
+    }
+    
+    public function getRolePermissions()
+    {
+        return ArrayHelper::getColumn($this->getPermissions()->asArray()->all(), 'id');
+    }
+
+    public function load($data, $formName=null)
+    {
+        $scope = $formName === null ? $this->formName() : $formName;
+        if ($scope == '' && !empty($data)) {
+            $this->permissions = $data['permissions'];
+        }
+        elseif (isset($data[$scope])) {
+            $this->permissions = $data[$scope]['permissions'];
+        }
+        else {
+            // pass
+        }
+        return parent::load($data, $formName);
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if ($insert === false) {
+            // unlink all previously linked
+        }
+        if (!empty($this->permissions)) {
+            foreach ($this->permissions as $perm) {
+                $permission = Permission::findOne($perm);
+                $this->link('permissions', $permission);
+            }
+        }
+        return parent::afterSave($insert, $changedAttributes);
+        //die;
     }
 }

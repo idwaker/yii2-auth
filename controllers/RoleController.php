@@ -113,6 +113,7 @@ class RoleController extends Controller
     protected function findModel($id)
     {
         if (($model = Role::findOne($id)) !== null) {
+            $model->permissions = $model->getRolePermissions();
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
