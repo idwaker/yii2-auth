@@ -25,6 +25,7 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
+Work in progress, unstable.
 
 Structure
 ---------
