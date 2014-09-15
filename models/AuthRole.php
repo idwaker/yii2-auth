@@ -57,7 +57,8 @@ class AuthRole extends \yii\db\ActiveRecord
      */
     public function getParent()
     {
-        return $this->hasOne(AuthRole::className(), ['id' => 'role_id']);
+        return $this->hasOne(self::className(), ['id' => 'role_id'])
+            ->from(self::tableName() . ' AS parent');
     }
 
     /**
