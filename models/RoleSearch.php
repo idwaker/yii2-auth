@@ -52,8 +52,8 @@ class RoleSearch extends Role
         ]);
         
         $dataProvider->sort->attributes['parent'] = [
-            'asc' => ['auth_role.name' => SORT_ASC],
-            'desc' => ['auth_role.name' => SORT_DESC]
+            'asc' => ['parent.name' => SORT_ASC],
+            'desc' => ['parent.name' => SORT_DESC]
         ];
 
         if (!($this->load($params) && $this->validate())) {
