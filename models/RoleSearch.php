@@ -44,10 +44,17 @@ class RoleSearch extends Role
     public function search($params)
     {
         $query = Role::find();
+        
+        $query->joinWith(['parent']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+        
+        $dataProvider->sort->attributes['parent'] = [
+            'asc' => ['auth_role.name' => SORT_ASC],
+            'desc' => ['auth_role.name' => SORT_DESC]
+        ];
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
@@ -55,13 +62,13 @@ class RoleSearch extends Role
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'parent' => $this->parent,
             'created_on' => $this->created_on,
             'updated_on' => $this->updated_on,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description]);
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'parent.name', $this->parent]);
 
         return $dataProvider;
     }
