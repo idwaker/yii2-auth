@@ -65,7 +65,8 @@ class AuthPermission extends \yii\db\ActiveRecord
      */
     public function getParent()
     {
-        return $this->hasOne(AuthPermission::className(), ['id' => 'permission_id']);
+        return $this->hasOne(self::className(), ['id' => 'permission_id'])
+            ->from(self::tableName() . ' AS parent');
     }
 
     /**

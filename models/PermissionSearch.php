@@ -20,7 +20,7 @@ class PermissionSearch extends Permission
     public function rules()
     {
         return [
-            [['id', 'parent', 'rule_id'], 'integer'],
+            [['id', 'rule_id'], 'integer'],
             [['name', 'description', 'created_on', 'parent'], 'safe'],
         ];
     }
@@ -44,10 +44,17 @@ class PermissionSearch extends Permission
     public function search($params)
     {
         $query = Permission::find();
+        
+        $query->joinWith(['parent']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+        
+        $dataProvider->sort->attributes['parent'] = [
+            'asc' => ['auth_role.name' => SORT_ASC],
+            'desc' => ['auth_role.name' => SORT_DESC]
+        ];
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
@@ -55,14 +62,14 @@ class PermissionSearch extends Permission
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'parent' => $this->parent,
             'rule_id' => $this->rule_id,
             'created_on' => $this->created_on,
             'updated_on' => $this->updated_on,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description]);
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'parent.name', $this->parent]);
 
         return $dataProvider;
     }
