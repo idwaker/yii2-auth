@@ -30,7 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             'description:ntext',
-            'parent',
+            [
+                'attribute' => 'parent',
+                'value' => 'parent.name'
+            ],
             'rule_id',
             // 'created_on',
             // 'updated_on',

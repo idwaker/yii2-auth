@@ -12,6 +12,8 @@ use idwaker\auth\models\Permission;
  */
 class PermissionSearch extends Permission
 {
+    public $parent;
+    
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class PermissionSearch extends Permission
     {
         return [
             [['id', 'parent', 'rule_id'], 'integer'],
-            [['name', 'description', 'created_on', 'updated_on'], 'safe'],
+            [['name', 'description', 'created_on', 'parent'], 'safe'],
         ];
     }
 
