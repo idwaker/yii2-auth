@@ -20,7 +20,7 @@ class RoleSearch extends Role
     public function rules()
     {
         return [
-            [['id', 'parent'], 'integer'],
+            [['id'], 'integer'],
             [['name', 'description', 'created_on', 'parent'], 'safe'],
         ];
     }
