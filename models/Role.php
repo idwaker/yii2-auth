@@ -62,10 +62,10 @@ class Role extends AuthRole
     {
         $scope = $formName === null ? $this->formName() : $formName;
         if ($scope == '' && !empty($data)) {
-            $this->permissions = $data['permissions'];
+            $this->permissions = isset($data['permissions']) ? $data['permissions'] : [];
         }
         elseif (isset($data[$scope])) {
-            $this->permissions = $data[$scope]['permissions'];
+            $this->permissions = isset($data[$scope]['permissions']) ? $data[$scope]['permissions'] : [];
         }
         else {
             // pass
