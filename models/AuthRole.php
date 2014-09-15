@@ -57,15 +57,15 @@ class AuthRole extends \yii\db\ActiveRecord
      */
     public function getParent()
     {
-        return $this->hasOne(AuthRole::className(), ['id' => 'parent']);
+        return $this->hasOne(AuthRole::className(), ['id' => 'role_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAuthRoles()
+    public function getChildren()
     {
-        return $this->hasMany(AuthRole::className(), ['parent' => 'id']);
+        return $this->hasMany(AuthRole::className(), ['role_id' => 'id']);
     }
 
     /**

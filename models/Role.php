@@ -20,7 +20,7 @@ class Role extends AuthRole
         return [
             [['name'], 'required'],
             [['description'], 'string'],
-            [['parent'], 'integer'],
+            [['role_id'], 'integer'],
             [['created_on', 'updated_on'], 'safe'],
             [['name'], 'string', 'max' => 64],
             [['name'], 'unique']
@@ -36,7 +36,7 @@ class Role extends AuthRole
             'id' => Yii::t('auth', 'ID'),
             'name' => Yii::t('auth', 'Name'),
             'description' => Yii::t('auth', 'Description'),
-            'parent' => Yii::t('auth', 'Parent'),
+            'role_id' => Yii::t('auth', 'Parent'),
             'created_on' => Yii::t('auth', 'Created On'),
             'updated_on' => Yii::t('auth', 'Updated On'),
             'permissions' => Yii::t('auth', 'Permissions'),
@@ -85,6 +85,5 @@ class Role extends AuthRole
             }
         }
         return parent::afterSave($insert, $changedAttributes);
-        //die;
     }
 }

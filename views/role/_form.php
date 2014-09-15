@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
     
-    <?= $form->field($model, 'parent')->dropDownList($model->getRoleList()) ?>
+    <?= $form->field($model, 'role_id')->dropDownList($model->getRoleList()) ?>
     
     <?= $form->field($model, 'permissions')->checkboxList($model->getPermissionList()) ?>
 

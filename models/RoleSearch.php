@@ -12,6 +12,8 @@ use idwaker\auth\models\Role;
  */
 class RoleSearch extends Role
 {
+    public $parent;
+    
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class RoleSearch extends Role
     {
         return [
             [['id', 'parent'], 'integer'],
-            [['name', 'description', 'created_on', 'updated_on'], 'safe'],
+            [['name', 'description', 'created_on', 'parent'], 'safe'],
         ];
     }
 
