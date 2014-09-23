@@ -12,12 +12,13 @@ $this->title = Yii::t('auth', 'Create {modelClass}', [
 $this->params['breadcrumbs'][] = ['label' => Yii::t('auth', 'Roles'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="role-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<fieldset class="role-create">
+
+    <legend><?= Html::encode($this->title) ?></legend>
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
 
-</div>
+</fieldset>

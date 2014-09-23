@@ -12,12 +12,13 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('auth', 'Rules'), 'url' => [
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('auth', 'Update');
 ?>
-<div class="rule-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<fieldset class="rule-update">
+
+    <legend><?= Html::encode($this->title) ?></legend>
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
 
-</div>
+</fieldset>
