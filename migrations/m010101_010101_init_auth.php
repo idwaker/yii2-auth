@@ -27,7 +27,7 @@ class m010101_010101_init_auth extends Migration
             'updated_on' => Schema::TYPE_DATETIME . ' NOT NULL',
         ], $tableOptions);
         
-        $this->addForeignKey('fk_auth_permission_parent', 'auth_permission', 'parent',
+        $this->addForeignKey('fk_auth_permission_parent', 'auth_permission', 'permission_id',
                              'auth_permission', 'id', 'SET NULL', 'NO ACTION');
 
         $this->createTable('auth_role', [
@@ -39,7 +39,7 @@ class m010101_010101_init_auth extends Migration
             'updated_on' => Schema::TYPE_DATETIME . ' NOT NULL',
         ], $tableOptions);
 
-        $this->addForeignKey('fk_auth_role_parent', 'auth_role', 'parent',
+        $this->addForeignKey('fk_auth_role_parent', 'auth_role', 'role_id',
                              'auth_role', 'id', 'SET NULL', 'NO ACTION');
 
         $this->createTable('auth_rule', [
