@@ -21,7 +21,7 @@ class m010101_010101_init_auth extends Migration
             'id' => Schema::TYPE_PK,
             'name' => Schema::TYPE_STRING . '(64) NOT NULL UNIQUE',
             'description' => Schema::TYPE_TEXT . ' NOT NULL',
-            'parent' => Schema::TYPE_INTEGER . '(11)',
+            'permission_id' => Schema::TYPE_INTEGER . '(11)',
             'rule_id' => Schema::TYPE_INTEGER . '(11)',
             'created_on' => Schema::TYPE_DATETIME . ' NOT NULL',
             'updated_on' => Schema::TYPE_DATETIME . ' NOT NULL',
@@ -34,7 +34,7 @@ class m010101_010101_init_auth extends Migration
             'id' => Schema::TYPE_PK,
             'name' => Schema::TYPE_STRING . '(64) NOT NULL UNIQUE',
             'description' => Schema::TYPE_TEXT,
-            'parent' => Schema::TYPE_INTEGER . '(11)',
+            'role_id' => Schema::TYPE_INTEGER . '(11)',
             'created_on' => Schema::TYPE_DATETIME . ' NOT NULL',
             'updated_on' => Schema::TYPE_DATETIME . ' NOT NULL',
         ], $tableOptions);
@@ -56,14 +56,18 @@ class m010101_010101_init_auth extends Migration
         $this->createTable('auth_user', [
             'id' => Schema::TYPE_PK,
             'username' => Schema::TYPE_STRING . '(64) NOT NULL',
-            'auth_key' => Schema::TYPE_STRING . '(32) NOT NULL',
+            'auth_key' => Schema::TYPE_TEXT . ' NOT NULL',
             'password' => Schema::TYPE_STRING . '(64) NOT NULL',
+            'secret_key' => Schema::TYPE_TEXT . ' NOT NULL',
             'status' => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT 1',
             'is_loggedin' => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT 0',
             'last_loggedin' => Schema::TYPE_DATETIME . ' NOT NULL',
             'created_on' => Schema::TYPE_DATETIME . ' NOT NULL',
             'updated_on' => Schema::TYPE_DATETIME . ' NOT NULL',
         ], $tableOptions);
+        
+        $this->createIndex('username_unique', 'auth_user', ['username'],
+                            true);
 
         $this->createTable('auth_role_permission', [
             'role_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
