@@ -393,4 +393,13 @@ class AuthManager extends Component implements ManagerInterface
     {
         return UserRole::deleteAll();
     }
+    
+    /**
+     * detach all children from parent
+     * @return	Bool    true if success
+     */
+    public function removeChildren($parent)
+    {
+        return true;
+    }
 }
