@@ -23,15 +23,29 @@ class AuthManager extends Component implements ManagerInterface
 
     /**
      * Checks of user has specified permission
-     * @param	Integer	$user		user Id
-     * @param	String	$permission	permission name
+     * @param	Integer	$userId		user Id
+     * @param	String	$roleName	role name
      * @param	Array	$params		name-value pair that will be passed to
      * rules associated
      * @return	Bool			true if user has permission
      */
-    public function checkAccess($user, $permission, $params=[])
+    public function checkAccess($userId, $roleName, $params=[])
     {
-        return true;
+        $userRoles = $this->getAssignments($userId);
+        
+        $role = $this->getRole($roleName);
+        
+        // given role doesn't exists on system
+        if ($role === null) {
+            return false;
+        }
+        
+        if (isset($userRoles[$roleName]) || 
+                in_array($roleName, $this->defaultRoles)) {
+            return true;
+        }
+        
+        return false;
     }
 
     /**
