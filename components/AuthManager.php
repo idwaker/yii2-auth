@@ -31,7 +31,7 @@ class AuthManager extends Component implements ManagerInterface
      */
     public function checkAccess($user, $permission, $params=[])
     {
-        //
+        return true;
     }
 
     /**
