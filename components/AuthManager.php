@@ -350,12 +350,14 @@ class AuthManager extends Component implements ManagerInterface
     }
 
     /**
-     * return all assignments information for specified user
-     * @param	Object	$user	user
-     * @return	Array		list of assignments
+     * @inheritdoc
      */
     public function getAssignments($userId)
     {
+        if (empty($userId)) {
+            return [];
+        }
+
         $user = User::findOne($userId);
         return $user->getRoles()->all();
     }
