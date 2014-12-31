@@ -359,7 +359,7 @@ class AuthManager extends Component implements ManagerInterface
         }
 
         $user = User::findOne($userId);
-        return $user->getRoles()->all();
+        return $user->getRoles()->asArray()->all();
     }
 
     /**
